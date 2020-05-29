@@ -30,10 +30,12 @@ export default {
   },
   methods: {
     signUp() {
-      firebase.auth().createUserWithEmailAndPassword('hogehoge@gmail.com', '1234567')
-      .then(users => {
-        // this.$store.commit("loginState", users.uid)
-      }).catch(() => {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+      .then((res) => {
+        alert('新規ユーザ登録完了！')
+        this.$store.commit("loginState",res.user.uid)
+      }).catch((err) => {
+        alert(err.message)
         this.valid = true
       })
     },
